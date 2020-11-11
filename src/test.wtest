@@ -1,0 +1,20 @@
+import solucion.*
+
+test "Vikingo asciende socialmente" {
+	const tilbardaga = new Soldado (castaSocial = karl, armas = 40, oro = 0, vidasCobradas = 0) //aguante el aoe2
+	tilbardaga.ascender()
+	assert.that(tilbardaga.obtenerCasta() == thrall)
+}
+
+test "Vikingo no pudo ir a expedicion" {
+	const hipo = new Soldado (castaSocial = karl, armas = 40, oro = 0, vidasCobradas = 0)
+	const pablito = new Soldado (castaSocial = jarl, armas = 1, oro = 0, vidasCobradas = 30) 
+	const expedicion1 = new Expedicion (listaObjetivos = [], participantes = [hipo])
+	assert.throwsExceptionWithMessage("El vikingo no puede subirse a una expedicion", { expedicion1.subirAExpedicion(pablito) })
+}
+
+test "Ragnar asciende" {
+	const ragnar = new Soldado (castaSocial = karl, armas = 10, oro = 3, vidasCobradas = 50) 
+	ragnar.ascender()
+	assert.that(ragnar.obtenerCasta() == thrall)
+}
